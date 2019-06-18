@@ -1,0 +1,19 @@
+dist: trusty
+install: |
+  set -e
+  set -o pipefail
+  ci/run-tests-install.sh
+  #pip install -e .
+  #pip list
+  #ls -l
+script: |
+  set -e
+  set -o pipefail
+  ci/run-tests.sh
+cache:
+  directories:
+  - $HOME/rootcern
+branches:
+  only:
+    - master
+    - /^\d+\.\d+(\.\d+)?(-rc\d+)?$/
